@@ -1,0 +1,29 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/leyoumall?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    host: 192.168.10.11
+    username: leyoumall
+    password: leyoumall
+    virtual-host: /leyoumall
+  redis:
+    host: 192.168.10.11
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eurekadefa
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}
+mybatis:
+  type-aliases-package: com.leyoumall.user.pojo
